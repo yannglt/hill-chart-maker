@@ -1,11 +1,21 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from "next/head";
+import { Reorder } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
-const inter = Inter({ subsets: ['latin'] })
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import Button from "../components/Button/Button";
+import Feature from "../components/Feature/Feature";
+
+import styles from "../styles/Home.module.css";
+
+const initialFeatures = ["Cloud File Types", "Select app from separate pages", "QA Platforms to check", "Another one", "A last one"]
 
 export default function Home() {
+  const [features, setFeatures] = useState(initialFeatures);
+  const transition = { duration: 4, yoyo: Infinity, ease: "easeInOut" };
+
   return (
     <>
       <Head>
@@ -14,101 +24,35 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+      <Header />
+      <main className={styles.app}>
+        <div className={styles.hillChart}>
+          <p className={styles.name}>Cloud Files</p>
+          <svg width="720" height="162" viewBox="0 0 720 162" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.hill}>
+            <motion.path d="M0 161C184 161 264 1 360 1C456 1 520 161 720 161" />
+          </svg>
+          <div className={styles.indicators}>
+            <p>Figuring things out</p>
+            <p>Making it happen</p>
           </div>
+          {/* <motion.div 
+            className={styles.dot}
+            transition={transition}
+            style={{ offsetPath: "path('M0 161C184 161 264 1 360 1C456 1 520 161 720 161')" }}
+          ></motion.div> */}
         </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
+        <div className={styles.features}>
+          <p>Features</p>
+          <Reorder.Group axis="y" values={features} onReorder={setFeatures} className={styles.featuresList} as="div">
+            {features.map((feature) => (
+              <Feature key={feature} name={feature} />
+            ))}
+          </Reorder.Group>
+          <Button label="Add a feature"/>
         </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+        <div className={styles.actions}></div>
       </main>
+      <Footer />
     </>
   )
 }

@@ -1,0 +1,27 @@
+.header {
+  margin: 0 auto 16px;
+  max-width: 768px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  color: var(--textHighEmphasis);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.creator {
+  color: var(--textLowEmphasis);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.creator a {
+  color: var(--textHighEmphasis);
+  font-size: inherit;
+  font-weight: 600;
+}

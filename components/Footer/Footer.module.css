@@ -1,0 +1,17 @@
+.footer {
+  padding-bottom: 32px;
+  margin: 16px auto 0;
+  max-width: 768px;
+}
+
+.footer p {
+  color: var(--textLowEmphasis);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.footer p:first-child {
+  margin-bottom: 8px;
+}

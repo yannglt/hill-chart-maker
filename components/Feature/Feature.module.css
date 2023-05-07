@@ -1,0 +1,48 @@
+.feature {
+  background-color: var(--appBackground);
+  padding: 8px 8px 8px 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  flex-shrink: 0;
+  /* align-items: center; */
+}
+
+.feature:not(:last-child) {
+  border-bottom: 1px solid var(--borderLowEmphasis);
+}
+
+/* .feature:hover {
+  cursor: move;
+} */
+
+.featureNameWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.featureName {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.feature input[type="color"] {
+  height: 16px;
+  width: 16px;
+  border: transparent;  
+  border-radius: 16px;
+  padding: 0;
+}
+
+.feature input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.feature input[type="color"]::-webkit-color-swatch {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;  
+}
